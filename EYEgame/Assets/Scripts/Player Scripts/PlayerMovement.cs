@@ -49,5 +49,13 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
+    public void StopMoving()
+    {
+        speed = 0;
+    }
 
+    public void StartMoving()
+    {
+        speed = 8;
+    }
 }
