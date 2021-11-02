@@ -8,12 +8,16 @@ public class EyeScript : MonoBehaviour
     public int x;
     public int y;
     public int direction;
+    public GameObject eyeGuard;
     bool collision = false;
     bool fixedDirection = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        eyeGuard = GameObject.Find("EyeHolder");
+
+
         /*
          * GetComponent.EyeHolder
          * 
