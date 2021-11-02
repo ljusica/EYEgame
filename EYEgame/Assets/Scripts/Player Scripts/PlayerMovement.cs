@@ -26,7 +26,6 @@ public class PlayerMovement : MonoBehaviour
             rb2d.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
         }
 
-
         movement.x = x * speed;
 
         transform.rotation = Quaternion.identity;
@@ -47,7 +46,6 @@ public class PlayerMovement : MonoBehaviour
     {
         grounded = false;
     }
-
 
     public void StopMoving()
     {
