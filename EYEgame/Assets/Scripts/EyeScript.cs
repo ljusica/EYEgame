@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class EyeScript : MonoBehaviour
 {
-    public float waitTime;
+    private float waitTime;
     public float startWaitTime;
+    public float startChaseTime;
     private float chaseTime;
     public float distance;
     public int speed = 3;
     public int chasingSpeed = 5;
     public Vector2 startPosition;
-    public GameObject eyeGuard;
     public Transform[] moveSpots;
-    public Transform sight;
     private Transform target;
     bool patrol = true;
+    bool goForward = true;
 
     // Start is called before the first frame update
     void Start()
@@ -29,11 +29,16 @@ public class EyeScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RaycastHit2D sightHit = Physics2D.Raycast(transform.position, transform.right, distance);
+        RaycastHit2D sightHit = Physics2D.Raycast(transform.position, transform.forward, distance);
 
         if (patrol == true)
         {
             Patrol();
+        }
+
+        if (sightHit.collider == null)
+        {
+            Debug.DrawLine(transform.position, transform.position + transform.forward * distance, Color.green);
         }
 
         if (sightHit.collider != null)
@@ -42,26 +47,21 @@ public class EyeScript : MonoBehaviour
 
             if (sightHit.collider.CompareTag("Player"))
             {
-                chaseTime = 8 * Time.deltaTime;
+                chaseTime = startChaseTime;
 
                 while (chaseTime > 0)
                 {
                     patrol = false;
                     ChasePlayer();
-                    chaseTime--;
+                    chaseTime -= Time.deltaTime;
                     //Lägg till kod för att minska spelarens HP 
                 }
 
-                if (chaseTime == 0)
+                if (chaseTime <= 0)
                 {
                     transform.position = Vector2.MoveTowards(transform.position, startPosition, speed * Time.deltaTime);
                 }
             }
-        }
-
-        else if (sightHit.collider == null)
-        {
-            Debug.DrawLine(transform.position, transform.position + transform.right * distance, Color.green);
         }
     }
 
@@ -69,7 +69,7 @@ public class EyeScript : MonoBehaviour
     {
         startPosition = this.transform.position;
 
-        if (transform.position == moveSpots[0].position)
+        if (goForward)
         {
             transform.position = Vector2.MoveTowards(transform.position, moveSpots[1].position, speed * Time.deltaTime);
 
@@ -77,7 +77,7 @@ public class EyeScript : MonoBehaviour
             {
                 if (waitTime <= 0)
                 {
-                    transform.position = moveSpots[1].position;
+                    goForward = false;
                     waitTime = startWaitTime;
                 }
 
@@ -88,7 +88,7 @@ public class EyeScript : MonoBehaviour
             }
         }
 
-        if (transform.position == moveSpots[1].position)
+        if (goForward == false)
         {
             transform.position = Vector2.MoveTowards(transform.position, moveSpots[0].position, speed * Time.deltaTime);
 
@@ -96,7 +96,7 @@ public class EyeScript : MonoBehaviour
             {
                 if (waitTime <= 0)
                 {
-                    transform.position = moveSpots[0].position;
+                    goForward = true;
                     waitTime = startWaitTime;
                 }
 
