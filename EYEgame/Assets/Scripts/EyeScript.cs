@@ -6,14 +6,15 @@ public class EyeScript : MonoBehaviour
 {
     public float waitTime;
     public float startWaitTime;
+    private float chaseTime;
+    public float distance;
     public int speed = 3;
-    //public int chasingSpeed = 5;
+    public int chasingSpeed = 5;
     public Vector2 startPosition;
     public GameObject eyeGuard;
     public Transform[] moveSpots;
-    //public Transform sight;
-    //private Transform target;
-    //bool collision = false;
+    public Transform sight;
+    private Transform target;
     bool patrol = true;
 
     // Start is called before the first frame update
@@ -21,31 +22,44 @@ public class EyeScript : MonoBehaviour
     {
         waitTime = startWaitTime;
         transform.position = moveSpots[0].position;
-        //target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        //sight = this.gameObject.transform.GetChild(0);
+        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        Physics2D.queriesStartInColliders = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        RaycastHit2D sightHit = Physics2D.Raycast(transform.position, transform.right, distance);
+
         if (patrol == true)
         {
             Patrol();
         }
 
-        //if (true/*change to collision script)*/)
-        //{
-        //    patrol = false;
-        //    ChasePlayer();
-        //}
-        /*
-         * OM player kolliderar med sight
-         * {
-         *      ChasePlayer();
-         *      patrol = false;
-         *      collision = true;
-         * }
-         */
+        if (sightHit.collider != null)
+        {
+            Debug.DrawLine(transform.position, sightHit.point, Color.red);
+
+            if (sightHit.collider.CompareTag("Player"))
+            {
+                chaseTime = 8 * Time.deltaTime;
+
+                while (chaseTime > 0)
+                {
+                    patrol = false;
+                    ChasePlayer();
+                    chaseTime--;
+                    //Lägg till kod för att minska spelarens HP 
+                }
+            }
+        }
+
+        else if (sightHit.collider == null)
+        {
+            Debug.DrawLine(transform.position, transform.position + transform.right * distance, Color.green);
+        }
+
     }
 
     void Patrol()
@@ -99,35 +113,15 @@ public class EyeScript : MonoBehaviour
         }
     }
 
-    //void ChasePlayer()
-    //{
-    //    if (Vector2.Distance(transform.position, target.position) > 3)
-    //    {
-    //        transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-    //    }
-    //}
-    /*
+    void ChasePlayer()
+    {
 
-     * Funktion : ChasePlayer
-     * {
-     *      do
-     *      {
-     *          sight.alpha = tonas upp och ned
-     *          player.hp--;
-     *          eyeGuard.x följer player.x
-     *          eyeGuard.y följer player.y
-     *      }   
-     *      while (collision == true + 5 sekunder)
-     *      
-     *      if collision = false
-     *      {
-     *          sight.alpha = 0.5f;
-     *                  
-     *          eyeGuard.x åker mot startPosition.x;
-     *          eyeGuard.y åker mot startPosition.y;
-     *      }
-     *      
-     * }
-    */
+        if (Vector2.Distance(transform.position, target.position) > 3)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, target.position, chasingSpeed * Time.deltaTime);
+
+        }
+    }
+
 }
 
