@@ -6,20 +6,23 @@ public class EyeScript : MonoBehaviour
 {
     public float waitTime;
     public float startWaitTime;
-    public int direction;
-    public int speed = 5;
-    public int firstPoint;
-    public int secondPoint;
+    public int speed = 3;
+    //public int chasingSpeed = 5;
     public Vector2 startPosition;
     public GameObject eyeGuard;
     public Transform[] moveSpots;
-    bool collision = false;
+    //public Transform sight;
+    //private Transform target;
+    //bool collision = false;
     bool patrol = true;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        waitTime = startWaitTime;
+        transform.position = moveSpots[0].position;
+        //target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        //sight = this.gameObject.transform.GetChild(0);
     }
 
     // Update is called once per frame
@@ -30,6 +33,11 @@ public class EyeScript : MonoBehaviour
             Patrol();
         }
 
+        //if (true/*change to collision script)*/)
+        //{
+        //    patrol = false;
+        //    ChasePlayer();
+        //}
         /*
          * OM player kolliderar med sight
          * {
@@ -43,56 +51,67 @@ public class EyeScript : MonoBehaviour
     void Patrol()
     {
         startPosition = this.transform.position;
-        transform.position = moveSpots[0].position;
-        waitTime = startWaitTime;
 
         while (patrol == true)
         {
-            //if (direction == 1)
-            //{
-            transform.position = Vector2.MoveTowards(transform.position, moveSpots[firstPoint].position, speed * Time.deltaTime);
-
-            if (Vector2.Distance(transform.position, moveSpots[firstPoint].position) < 0.2f)
+            if (transform.position == moveSpots[0].position)
             {
-                if (waitTime <= 0)
-                {
-                    waitTime = startWaitTime;
-                }
+                transform.position = Vector2.MoveTowards(transform.position, moveSpots[1].position, speed * Time.deltaTime);
 
-                else
+                if (Vector2.Distance(transform.position, moveSpots[1].position) < 0.2f)
                 {
-                    waitTime -= Time.deltaTime;
+                    if (waitTime <= 0)
+                    {
+                        transform.position = moveSpots[1].position;
+                        waitTime = startWaitTime;
+                    }
+
+                    else
+                    {
+                        waitTime -= Time.deltaTime;
+                    }
                 }
-                //}
             }
 
-            if (direction == 2)
+            if (transform.position == moveSpots[1].position)
             {
-                //transform.position = transform.position + new Vector3(x, patrolDistance * speed * Time.deltaTime, 0);
-                //vänta och vänd?
+                transform.position = Vector2.MoveTowards(transform.position, moveSpots[0].position, speed * Time.deltaTime);
+
+                if (Vector2.Distance(transform.position, moveSpots[0].position) < 0.2f)
+                {
+                    if (waitTime <= 0)
+                    {
+                        transform.position = moveSpots[0].position;
+                        waitTime = startWaitTime;
+                    }
+
+                    else
+                    {
+                        waitTime -= Time.deltaTime;
+                    }
+                }
             }
 
             else
             {
-                Debug.Log("Please assign valid values to direction (1 = x or 2 = y) and plannedPoint");
+                Debug.Log("Please assign valid values to MoveSpots");
             }
         }
     }
 
-    void ChasePlayer()
-    {
-        patrol = false;
-    }
+    //void ChasePlayer()
+    //{
+    //    if (Vector2.Distance(transform.position, target.position) > 3)
+    //    {
+    //        transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+    //    }
+    //}
     /*
 
      * Funktion : ChasePlayer
      * {
-     *      GetComponent<Player> = player;
-     *      GetComponent<Sight> = sight;
-     * 
      *      do
      *      {
-     *          fixedDirection = false;
      *          sight.alpha = tonas upp och ned
      *          player.hp--;
      *          eyeGuard.x följer player.x
