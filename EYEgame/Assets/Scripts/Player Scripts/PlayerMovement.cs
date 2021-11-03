@@ -6,6 +6,9 @@ public class PlayerMovement : MonoBehaviour
 {
     public float speed;
     public float jumpPower = 10;
+    public int maxHealth = 10;
+    public int currentHealth;
+    public HealthBar healthbar;
     Vector2 movement = new Vector2();
     bool grounded;
     Rigidbody2D rb2d;
@@ -13,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        currentHealth = maxHealth;
+        healthbar.setMaxHealth(maxHealth);
     }
 
     // Update is called once per frame
@@ -29,12 +34,23 @@ public class PlayerMovement : MonoBehaviour
         movement.x = x * speed;
 
         transform.rotation = Quaternion.identity;
-    }
 
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            TakeDamage(2);
+        }
+    }
     void FixedUpdate()
     {
         movement.y = rb2d.velocity.y;
         rb2d.velocity = movement;
+    }
+
+    void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        healthbar.setHealth(currentHealth); 
     }
 
     private void OnTriggerEnter2D(Collider2D other)
