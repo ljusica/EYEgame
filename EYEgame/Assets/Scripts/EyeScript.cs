@@ -29,7 +29,6 @@ public class EyeScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         RaycastHit2D sightHit = Physics2D.Raycast(transform.position, transform.right, distance);
 
         if (patrol == true)
@@ -52,6 +51,11 @@ public class EyeScript : MonoBehaviour
                     chaseTime--;
                     //Lägg till kod för att minska spelarens HP 
                 }
+
+                if (chaseTime == 0)
+                {
+                    transform.position = Vector2.MoveTowards(transform.position, startPosition, speed * Time.deltaTime);
+                }
             }
         }
 
@@ -59,58 +63,55 @@ public class EyeScript : MonoBehaviour
         {
             Debug.DrawLine(transform.position, transform.position + transform.right * distance, Color.green);
         }
-
     }
 
     void Patrol()
     {
         startPosition = this.transform.position;
 
-        while (patrol == true)
+        if (transform.position == moveSpots[0].position)
         {
-            if (transform.position == moveSpots[0].position)
-            {
-                transform.position = Vector2.MoveTowards(transform.position, moveSpots[1].position, speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, moveSpots[1].position, speed * Time.deltaTime);
 
-                if (Vector2.Distance(transform.position, moveSpots[1].position) < 0.2f)
+            if (Vector2.Distance(transform.position, moveSpots[1].position) < 0.2f)
+            {
+                if (waitTime <= 0)
                 {
-                    if (waitTime <= 0)
-                    {
-                        transform.position = moveSpots[1].position;
-                        waitTime = startWaitTime;
-                    }
-
-                    else
-                    {
-                        waitTime -= Time.deltaTime;
-                    }
+                    transform.position = moveSpots[1].position;
+                    waitTime = startWaitTime;
                 }
-            }
 
-            if (transform.position == moveSpots[1].position)
-            {
-                transform.position = Vector2.MoveTowards(transform.position, moveSpots[0].position, speed * Time.deltaTime);
-
-                if (Vector2.Distance(transform.position, moveSpots[0].position) < 0.2f)
+                else
                 {
-                    if (waitTime <= 0)
-                    {
-                        transform.position = moveSpots[0].position;
-                        waitTime = startWaitTime;
-                    }
-
-                    else
-                    {
-                        waitTime -= Time.deltaTime;
-                    }
+                    waitTime -= Time.deltaTime;
                 }
-            }
-
-            else
-            {
-                Debug.Log("Please assign valid values to MoveSpots");
             }
         }
+
+        if (transform.position == moveSpots[1].position)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, moveSpots[0].position, speed * Time.deltaTime);
+
+            if (Vector2.Distance(transform.position, moveSpots[0].position) < 0.2f)
+            {
+                if (waitTime <= 0)
+                {
+                    transform.position = moveSpots[0].position;
+                    waitTime = startWaitTime;
+                }
+
+                else
+                {
+                    waitTime -= Time.deltaTime;
+                }
+            }
+        }
+
+        else
+        {
+            Debug.Log("Please assign valid values to MoveSpots");
+        }
+
     }
 
     void ChasePlayer()
