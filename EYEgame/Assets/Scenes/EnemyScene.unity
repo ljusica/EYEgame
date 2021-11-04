@@ -391,7 +391,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 49261118934923050, guid: 4791046f8d400ef418a7365942ea4c5c, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 49261118934923050, guid: 4791046f8d400ef418a7365942ea4c5c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1278,12 +1278,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b49fe1bf3574eda4fa34844992408095, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eb3730056d0ff1e4bb0596d9c68a0e68, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.5, y: 1.98}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1579,17 +1579,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b48fda89a0da2d4fa659b1751fc2082, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
-  m_PhysicalUnit: 3
-  m_FallbackScreenDPI: 96
-  m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  Cam1: {fileID: 0}
+  Cam2: {fileID: 0}
 --- !u!223 &2106974074
 Canvas:
   m_ObjectHideFlags: 0
