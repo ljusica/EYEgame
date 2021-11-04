@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     public float jumpPower = 10;
     public int maxHealth = 10;
-    public int currentHealth;
+    public float currentHealth;
     public HealthBar healthbar;
 
     Vector2 movement = new Vector2();
@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
         rb2d.velocity = movement;
     }
 
-    void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         currentHealth -= damage;
 
