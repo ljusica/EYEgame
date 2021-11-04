@@ -5,8 +5,8 @@ using UnityEngine;
 public class Key : MonoBehaviour
 {
 
-    private OnTriggerEnter(Collider other)
-    {
+    //private OnTriggerEnter(Collider other)
+   // {
 
-    }
+   // }
 }

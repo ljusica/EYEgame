@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
-        healthbar.setMaxHealth(maxHealth);
+        
     }
 
     // Update is called once per frame
