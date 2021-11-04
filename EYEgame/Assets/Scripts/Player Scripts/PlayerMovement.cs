@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public int maxHealth = 10;
     public int currentHealth;
     public HealthBar healthbar;
+
     Vector2 movement = new Vector2();
     bool grounded;
     Rigidbody2D rb2d;
