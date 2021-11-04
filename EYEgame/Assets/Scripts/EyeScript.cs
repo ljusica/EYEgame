@@ -15,7 +15,12 @@ public class EyeScript : MonoBehaviour
     public Transform[] moveSpots;
     private Transform target;
     bool patrol = true;
-    bool goForward = true;
+    bool chase = false;
+    bool goFirstDirection = true;
+    public LineRenderer lineOfSight;
+    public Gradient greenColor;
+    public Gradient redColor;
+    public Vector3 offset = new Vector3(0, 0.25f, 0);
 
     // Start is called before the first frame update
     void Start()
@@ -24,60 +29,77 @@ public class EyeScript : MonoBehaviour
         transform.position = moveSpots[0].position;
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         Physics2D.queriesStartInColliders = false;
+        startPosition = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        RaycastHit2D sightHit = Physics2D.Raycast(transform.position, transform.forward, distance);
+        RaycastHit2D sightHit = Physics2D.Raycast(transform.position, transform.right, distance);
+        Debug.DrawLine(transform.position, transform.position + transform.right * distance, Color.green);
+        lineOfSight.SetPosition(0, transform.position + offset);
+        lineOfSight.SetPosition(1, transform.position + offset + transform.right * distance);
+        lineOfSight.colorGradient = greenColor;
 
         if (patrol == true)
         {
             Patrol();
         }
 
-        if (sightHit.collider == null)
-        {
-            Debug.DrawLine(transform.position, transform.position + transform.forward * distance, Color.green);
-        }
-
         if (sightHit.collider != null)
         {
             Debug.DrawLine(transform.position, sightHit.point, Color.red);
+            lineOfSight.SetPosition(1, sightHit.point);
+            chaseTime = startChaseTime;
 
             if (sightHit.collider.CompareTag("Player"))
             {
-                chaseTime = startChaseTime;
+                chase = true;
+                lineOfSight.colorGradient = redColor;
+                //Lägg till kod för att minska HP
+            }
 
-                while (chaseTime > 0)
-                {
-                    patrol = false;
-                    ChasePlayer();
-                    chaseTime -= Time.deltaTime;
-                    //Lägg till kod för att minska spelarens HP 
-                }
+        }
 
-                if (chaseTime <= 0)
-                {
-                    transform.position = Vector2.MoveTowards(transform.position, startPosition, speed * Time.deltaTime);
-                }
+        if (chaseTime > 0 && chase == true)
+        {
+            patrol = false;
+            ChasePlayer();
+            chaseTime -= Time.deltaTime;
+
+            if (transform.position.x > target.position.x)
+            {
+                transform.eulerAngles = new Vector3(0, -180, 0);
+            }
+
+            if (transform.position.x < target.position.x)
+            {
+                transform.eulerAngles = new Vector3(0, 0, 0);
             }
         }
+
+        if (chaseTime <= 0)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, startPosition, speed * Time.deltaTime);
+            patrol = true;
+            Patrol();
+            chase = false;
+        }
+
     }
 
     void Patrol()
     {
-        startPosition = this.transform.position;
-
-        if (goForward)
+        if (goFirstDirection)
         {
             transform.position = Vector2.MoveTowards(transform.position, moveSpots[1].position, speed * Time.deltaTime);
+            transform.eulerAngles = new Vector3(0, -180, 0);
 
             if (Vector2.Distance(transform.position, moveSpots[1].position) < 0.2f)
             {
                 if (waitTime <= 0)
                 {
-                    goForward = false;
+                    goFirstDirection = false;
                     waitTime = startWaitTime;
                 }
 
@@ -88,15 +110,16 @@ public class EyeScript : MonoBehaviour
             }
         }
 
-        if (goForward == false)
+        if (goFirstDirection == false)
         {
-            transform.position = Vector2.MoveTowards(transform.position, moveSpots[0].position, speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, moveSpots[0].position, Time.deltaTime);
+            transform.eulerAngles = new Vector3(0, 0, 0);
 
             if (Vector2.Distance(transform.position, moveSpots[0].position) < 0.2f)
             {
                 if (waitTime <= 0)
                 {
-                    goForward = true;
+                    goFirstDirection = true;
                     waitTime = startWaitTime;
                 }
 
@@ -116,11 +139,9 @@ public class EyeScript : MonoBehaviour
 
     void ChasePlayer()
     {
-
         if (Vector2.Distance(transform.position, target.position) > 3)
         {
             transform.position = Vector2.MoveTowards(transform.position, target.position, chasingSpeed * Time.deltaTime);
-
         }
     }
 
