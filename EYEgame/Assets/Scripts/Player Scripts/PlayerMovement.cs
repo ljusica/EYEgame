@@ -18,7 +18,8 @@ public class PlayerMovement : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
-        healthbar.setMaxHealth(maxHealth);
+        //healthbar.setMaxHealth(maxHealth);
+        Physics2D.queriesStartInColliders = false;
     }
 
     // Update is called once per frame
@@ -26,13 +27,36 @@ public class PlayerMovement : MonoBehaviour
     {
         float x = Input.GetAxis("Horizontal");
 
-        if (Input.GetButtonDown("Jump") && grounded)
-        {
-            //rb2d.velocity = new Vector2(rb2d.velocity.x, jumpPower);
-            rb2d.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-        }
+        Jump();
 
         movement.x = x * speed;
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, 0.3f);
+        //Debug.DrawRay(transform.position, Vector2.right * 0.3f, Color.red, 0.2f);
+        if (hit.collider != null)
+        {
+            if (movement.x > 1)
+            {
+                movement.x = 0;
+            }
+        }
+
+        hit = Physics2D.Raycast(transform.position, Vector2.left, 0.3f);
+        //Debug.DrawRay(transform.position, Vector2.right * 0.3f, Color.red, 0.2f);
+        if (hit.collider != null)
+        {
+            if (movement.x < -1)
+            {
+                movement.x = 0;
+            }
+        }
+
+        hit = Physics2D.Raycast(transform.position, Vector2.down, 0.3f);
+        //Debug.DrawRay(transform.position, Vector2.right * 0.3f, Color.red, 0.2f);
+        if (hit.collider != null)
+        {
+            Jump();
+        }
 
         transform.rotation = Quaternion.identity;
 
@@ -41,6 +65,17 @@ public class PlayerMovement : MonoBehaviour
             TakeDamage(2);
         }
     }
+
+    private void Jump()
+    {
+        if (Input.GetButtonDown("Jump"))
+        {
+            //rb2d.velocity = new Vector2(rb2d.velocity.x, jumpPower);
+           
+            rb2d.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+        }
+    }
+
     void FixedUpdate()
     {
         movement.y = rb2d.velocity.y;
@@ -54,15 +89,15 @@ public class PlayerMovement : MonoBehaviour
         healthbar.setHealth(currentHealth); 
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        grounded = true;
-    }
+    //private void OnTriggerEnter2D(Collider2D other)
+    //{
+    //    grounded = true;
+    //}
 
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        grounded = false;
-    }
+    //private void OnTriggerExit2D(Collider2D other)
+    //{
+    //    grounded = false;
+    //}
 
     public void StopMoving()
     {
