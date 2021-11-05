@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Exit
+  - Barrel
   layers:
   - Default
   - TransparentFX

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed;
+    private float speed = 5;
     public float jumpPower = 5;
     public int maxHealth = 10;
     public float currentHealth;
@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isHidden;
 
     Vector2 movement = new Vector2();
-    bool grounded;
+    public bool Isgrounded = false;
     Rigidbody2D rb2d;
     // Start is called before the first frame update
     void Start()
@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
 
         movement.x = x * speed;
 
-
+        
 
         movement.x = x * speed;
 
@@ -69,6 +69,11 @@ public class PlayerMovement : MonoBehaviour
         {
 
         }
+
+        if(isHidden != true)
+        {
+            StopMoving();
+        }
     }
 
 
@@ -87,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        if (Input.GetButtonDown("Jump") && grounded)
+        if (Input.GetButtonDown("Jump") && Isgrounded)
         {
             //rb2d.velocity = new Vector2(rb2d.velocity.x, jumpPower);
 
@@ -97,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        grounded = true;
+        Isgrounded = true;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -110,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D other)
     {
-        grounded = false;
+        Isgrounded = false;
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -121,7 +126,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            grounded = false;
+            Isgrounded = false;
         }
     }
 
