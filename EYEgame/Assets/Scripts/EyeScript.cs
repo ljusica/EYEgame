@@ -14,6 +14,7 @@ public class EyeScript : MonoBehaviour
     public Vector2 startPosition;
     public Transform[] moveSpots;
     private Transform target;
+    private PlayerMovement player;
     public PlayerMovement playerScript;
     bool patrol = true;
     bool chase = false;
@@ -28,6 +29,7 @@ public class EyeScript : MonoBehaviour
     {
         waitTime = startWaitTime;
         transform.position = moveSpots[0].position;
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         Physics2D.queriesStartInColliders = false;
@@ -54,11 +56,15 @@ public class EyeScript : MonoBehaviour
 
             if (sightHit.collider.CompareTag("Player"))
             {
-                chase = true;
-                lineOfSight.colorGradient = redColor;
-                playerScript.TakeDamage(0.02f);
+                if (!player.isHidden)
+                    lineOfSight.colorGradient = redColor;
+                {
+                    //Lägg till kod för att minska HP
+                    chase = true;
+                    lineOfSight.colorGradient = redColor;
+                    //Lägg till kod för att minska HP
+                }
             }
-
         }
 
         if (chaseTime > 0 && chase == true)
