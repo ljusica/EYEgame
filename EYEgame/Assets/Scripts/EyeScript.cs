@@ -57,9 +57,8 @@ public class EyeScript : MonoBehaviour
             if (sightHit.collider.CompareTag("Player"))
             {
                 if (!player.isHidden)
-                    lineOfSight.colorGradient = redColor;
                 {
-                    //Lägg till kod för att minska HP
+                    playerScript.TakeDamage(0.01f);
                     chase = true;
                     lineOfSight.colorGradient = redColor;
                     //Lägg till kod för att minska HP

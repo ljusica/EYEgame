@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -12,9 +13,11 @@ public class PlayerMovement : MonoBehaviour
     public float currentHealth;
     public HealthBar healthbar;
     public bool isHidden;
+    public Animator animator;
+
      
     Vector2 movement = new Vector2();
-    public bool Isgrounded = false;
+    public bool isGrounded = false;
     Rigidbody2D rb2d;
     // Start is called before the first frame update
     void Start()
@@ -73,6 +76,11 @@ public class PlayerMovement : MonoBehaviour
         {
             StopMoving();
         }
+
+        if(currentHealth <= 0)
+        {
+            SceneManager.LoadScene("EndScene");
+        }
     }
 
 
@@ -94,18 +102,20 @@ public class PlayerMovement : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
 
         movement.x = x * speed;
-        if (Input.GetKey(KeyCode.A) && Isgrounded)
+        if (Input.GetKey(KeyCode.A))
         {
             Walking.Play();
+            animator.transform.eulerAngles = new Vector3(0, -180, 0);
         }
-        if (Input.GetKey(KeyCode.D) && Isgrounded)
+        if (Input.GetKey(KeyCode.D))
         {
             Walking.Play();
+            animator.transform.eulerAngles = new Vector3(0, 0, 0);
         }
     }
     private void Jump()
     {
-        if (Input.GetButtonDown("Jump") && Isgrounded)
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
             //rb2d.velocity = new Vector2(rb2d.velocity.x, jumpPower);
             JumpSound.Play();
@@ -115,9 +125,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        Isgrounded = true;
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+        }
     }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Barrel"))
@@ -125,10 +137,9 @@ public class PlayerMovement : MonoBehaviour
             isHidden = true;
         }
     }
-
     private void OnCollisionExit2D(Collision2D other)
     {
-        Isgrounded = false;
+        isGrounded = false;
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -139,9 +150,11 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            Isgrounded = false;
+            isGrounded = false;
         }
     }
+
+    
 
     public void StopMoving()
     {

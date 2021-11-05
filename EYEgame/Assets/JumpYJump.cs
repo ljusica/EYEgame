@@ -21,7 +21,7 @@ public class JumpYJump : MonoBehaviour
     {
         if (collision.collider.tag == "Ground")
         {
-            Player.GetComponent<PlayerMovement>().Isgrounded = true;
+            Player.GetComponent<PlayerMovement>().isGrounded = true;
         }
     }
 
@@ -29,7 +29,7 @@ public class JumpYJump : MonoBehaviour
     {
         if (collision.collider.tag == "Ground")
         {
-            Player.GetComponent<PlayerMovement>().Isgrounded = true;
+            Player.GetComponent<PlayerMovement>().isGrounded = true;
         }
     }
 }
