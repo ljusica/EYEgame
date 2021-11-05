@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float speed;
-    public float jumpPower = 10;
+    public float jumpPower = 5;
     public int maxHealth = 10;
     public float currentHealth;
     public HealthBar healthbar;
@@ -18,7 +18,11 @@ public class PlayerMovement : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
+<<<<<<< Updated upstream
         isHidden = false;
+=======
+        Physics2D.queriesStartInColliders = false;
+>>>>>>> Stashed changes
     }
 
     // Update is called once per frame
@@ -26,11 +30,11 @@ public class PlayerMovement : MonoBehaviour
     {
         float x = Input.GetAxis("Horizontal");
 
-        if (Input.GetButtonDown("Jump") && grounded)
-        {
-            //rb2d.velocity = new Vector2(rb2d.velocity.x, jumpPower);
-            rb2d.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-        }
+        Jump();
+
+        movement.x = x * speed;
+
+       
 
         movement.x = x * speed;
 
@@ -40,7 +44,36 @@ public class PlayerMovement : MonoBehaviour
         {
             TakeDamage(2);
         }
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, 0.3f);
+        //Debug.DrawRay(transform.position, Vector2.right * 0.3f, Color.red, 0.2f);
+        if (hit.collider != null)
+        {
+            if (movement.x > 1)
+            {
+                movement.x = 0;
+            }
+        }
+
+        hit = Physics2D.Raycast(transform.position, Vector2.left, 0.3f);
+        //Debug.DrawRay(transform.position, Vector2.right * 0.3f, Color.red, 0.2f);
+        if (hit.collider != null)
+        {
+            if (movement.x < -1)
+            {
+                movement.x = 0;
+            }
+        }
+
+        hit = Physics2D.Raycast(transform.position, Vector2.down, 0.3f);
+        //Debug.DrawRay(transform.position, Vector2.right * 0.3f, Color.red, 0.2f);
+        if (hit.collider != null)
+        {
+            
+        }
     }
+    
+    
     void FixedUpdate()
     {
         movement.y = rb2d.velocity.y;
@@ -54,7 +87,21 @@ public class PlayerMovement : MonoBehaviour
         healthbar.setHealth(currentHealth); 
     }
 
+<<<<<<< Updated upstream
     private void OnCollisionEnter2D(Collision2D other)
+=======
+    private void Jump()
+    {
+        if (Input.GetButtonDown("Jump") && grounded)
+        {
+            //rb2d.velocity = new Vector2(rb2d.velocity.x, jumpPower);
+
+            rb2d.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+>>>>>>> Stashed changes
     {
         grounded = true;
     }
