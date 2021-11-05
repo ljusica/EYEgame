@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public AudioSource JumpSound;
+    public AudioSource Walking;
     private float speed = 5;
     public float jumpPower = 5;
     public int maxHealth = 10;
     public float currentHealth;
     public HealthBar healthbar;
     public bool isHidden;
-
+     
     Vector2 movement = new Vector2();
     public bool Isgrounded = false;
     Rigidbody2D rb2d;
@@ -26,13 +28,10 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float x = Input.GetAxis("Horizontal");
-
         Jump();
 
-        movement.x = x * speed;
-
-        
+        Movement();
+        float x = Input.GetAxis("Horizontal");
 
         movement.x = x * speed;
 
@@ -90,12 +89,26 @@ public class PlayerMovement : MonoBehaviour
         healthbar.setHealth(currentHealth);
     }
 
+    public void Movement()
+    {
+        float x = Input.GetAxis("Horizontal");
+
+        movement.x = x * speed;
+        if (Input.GetKey(KeyCode.A) && Isgrounded)
+        {
+            Walking.Play();
+        }
+        if (Input.GetKey(KeyCode.D) && Isgrounded)
+        {
+            Walking.Play();
+        }
+    }
     private void Jump()
     {
         if (Input.GetButtonDown("Jump") && Isgrounded)
         {
             //rb2d.velocity = new Vector2(rb2d.velocity.x, jumpPower);
-
+            JumpSound.Play();
             rb2d.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
         }
     }
