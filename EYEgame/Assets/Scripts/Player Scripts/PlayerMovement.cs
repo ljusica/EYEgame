@@ -9,20 +9,16 @@ public class PlayerMovement : MonoBehaviour
     public int maxHealth = 10;
     public float currentHealth;
     public HealthBar healthbar;
-    public bool isHidden;
+
     Vector2 movement = new Vector2();
-    public bool grounded;
+    bool grounded;
     Rigidbody2D rb2d;
     // Start is called before the first frame update
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
-<<<<<<< Updated upstream
-        isHidden = false;
-=======
         Physics2D.queriesStartInColliders = false;
->>>>>>> Stashed changes
     }
 
     // Update is called once per frame
@@ -34,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
         movement.x = x * speed;
 
-       
+
 
         movement.x = x * speed;
 
@@ -69,11 +65,11 @@ public class PlayerMovement : MonoBehaviour
         //Debug.DrawRay(transform.position, Vector2.right * 0.3f, Color.red, 0.2f);
         if (hit.collider != null)
         {
-            
+
         }
     }
-    
-    
+
+
     void FixedUpdate()
     {
         movement.y = rb2d.velocity.y;
@@ -84,12 +80,9 @@ public class PlayerMovement : MonoBehaviour
     {
         currentHealth -= damage;
 
-        healthbar.setHealth(currentHealth); 
+        healthbar.setHealth(currentHealth);
     }
 
-<<<<<<< Updated upstream
-    private void OnCollisionEnter2D(Collision2D other)
-=======
     private void Jump()
     {
         if (Input.GetButtonDown("Jump") && grounded)
@@ -101,38 +94,14 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other)
->>>>>>> Stashed changes
     {
         grounded = true;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Barrel"))
-        {
-            isHidden = true;
-        }
-    }
-
-    // OnTriggerStay2D
-
-    private void OnCollisionExit2D(Collision2D other)
+    private void OnTriggerExit2D(Collider2D other)
     {
         grounded = false;
     }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Barrel"))
-        {
-            isHidden = false;
-        }
-        else
-        {
-            grounded = false;
-        }
-    }
-
 
     public void StopMoving()
     {
