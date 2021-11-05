@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public int maxHealth = 10;
     public float currentHealth;
     public HealthBar healthbar;
+    public bool isHidden;
 
     Vector2 movement = new Vector2();
     bool grounded;
@@ -19,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
         Physics2D.queriesStartInColliders = false;
+        isHidden = false;
     }
 
     // Update is called once per frame
@@ -93,14 +95,34 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
         grounded = true;
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Barrel"))
+        {
+            isHidden = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
     {
         grounded = false;
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Barrel"))
+        {
+            isHidden = false;
+        }
+        else
+        {
+            grounded = false;
+        }
     }
 
     public void StopMoving()
