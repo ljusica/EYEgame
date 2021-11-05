@@ -216,7 +216,7 @@ RectTransform:
   m_Children:
   - {fileID: 1763300901}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -8007,7 +8007,7 @@ Transform:
   m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &347780823 stripped
 Transform:
@@ -8513,9 +8513,10 @@ GameObject:
   - component: {fileID: 549220437}
   - component: {fileID: 549220436}
   - component: {fileID: 549220438}
+  - component: {fileID: 549220439}
   m_Layer: 0
   m_Name: barrel (5)
-  m_TagString: Untagged
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8559,7 +8560,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d45c2d120dce16146a435b535e038efd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -8597,6 +8598,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4b65168eacf4be4184a50f1b31acaef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!58 &549220439
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549220435}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0000009536743, y: -0.0000009536743}
+  serializedVersion: 2
+  m_Radius: 0.74
 --- !u!1 &552536242
 GameObject:
   m_ObjectHideFlags: 0
@@ -8608,9 +8625,10 @@ GameObject:
   - component: {fileID: 552536244}
   - component: {fileID: 552536243}
   - component: {fileID: 552536245}
+  - component: {fileID: 552536246}
   m_Layer: 0
   m_Name: barrel (3)
-  m_TagString: Untagged
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8654,7 +8672,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d45c2d120dce16146a435b535e038efd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -8692,6 +8710,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4b65168eacf4be4184a50f1b31acaef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!58 &552536246
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 552536242}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0000009536743, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.74
 --- !u!1001 &553982458
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8843,9 +8877,10 @@ GameObject:
   - component: {fileID: 572454283}
   - component: {fileID: 572454282}
   - component: {fileID: 572454284}
+  - component: {fileID: 572454285}
   m_Layer: 0
   m_Name: barrel
-  m_TagString: Untagged
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8889,7 +8924,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d45c2d120dce16146a435b535e038efd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -8927,6 +8962,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4b65168eacf4be4184a50f1b31acaef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!58 &572454285
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572454281}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.74
 --- !u!4 &594978666 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5489637839911968753, guid: 89a02e1fa972d464491d6139bfdacd7c, type: 3}
@@ -9094,6 +9145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbca501d6a295124ea1b709fcfb735bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit: {fileID: 1254975988}
 --- !u!1001 &685212326
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9256,6 +9308,8 @@ MonoBehaviour:
   maxHealth: 10
   currentHealth: 0
   healthbar: {fileID: 1763300902}
+  isHidden: 0
+  grounded: 0
 --- !u!50 &753779914
 Rigidbody2D:
   serializedVersion: 4
@@ -10127,9 +10181,10 @@ GameObject:
   - component: {fileID: 1085206629}
   - component: {fileID: 1085206628}
   - component: {fileID: 1085206630}
+  - component: {fileID: 1085206631}
   m_Layer: 0
   m_Name: barrel (1)
-  m_TagString: Untagged
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10173,7 +10228,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d45c2d120dce16146a435b535e038efd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -10211,6 +10266,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4b65168eacf4be4184a50f1b31acaef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!58 &1085206631
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085206627}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0000019073486, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.74
 --- !u!1 &1120231269
 GameObject:
   m_ObjectHideFlags: 0
@@ -10246,7 +10317,7 @@ Transform:
   - {fileID: 549220437}
   - {fileID: 1714726609}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1158256024 stripped
 Transform:
@@ -10339,11 +10410,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 49261118934923050, guid: 4791046f8d400ef418a7365942ea4c5c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.37
+      value: -13.18
       objectReference: {fileID: 0}
     - target: {fileID: 49261118934923050, guid: 4791046f8d400ef418a7365942ea4c5c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.37
+      value: 0.54
       objectReference: {fileID: 0}
     - target: {fileID: 49261118934923050, guid: 4791046f8d400ef418a7365942ea4c5c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10380,6 +10451,10 @@ PrefabInstance:
     - target: {fileID: 459599655104670302, guid: 4791046f8d400ef418a7365942ea4c5c, type: 3}
       propertyPath: m_Name
       value: Capsule
+      objectReference: {fileID: 0}
+    - target: {fileID: 459599655104670302, guid: 4791046f8d400ef418a7365942ea4c5c, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 513700599560026201, guid: 4791046f8d400ef418a7365942ea4c5c, type: 3}
       propertyPath: m_SortingOrder
@@ -10482,7 +10557,7 @@ GameObject:
   - component: {fileID: 1254975991}
   - component: {fileID: 1254975990}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10728,7 +10803,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1406349025 stripped
 Transform:
@@ -10742,9 +10817,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2964810808873644356, guid: 7c991e48987d7d5439c7ead132b9003c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6798594334870653626, guid: 7c991e48987d7d5439c7ead132b9003c, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6798594334870653626, guid: 7c991e48987d7d5439c7ead132b9003c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11268,9 +11347,10 @@ GameObject:
   - component: {fileID: 1714726609}
   - component: {fileID: 1714726608}
   - component: {fileID: 1714726610}
+  - component: {fileID: 1714726611}
   m_Layer: 0
   m_Name: barrel (6)
-  m_TagString: Untagged
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11314,7 +11394,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d45c2d120dce16146a435b535e038efd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -11334,7 +11414,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1714726607}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.02, y: -0.08, z: 0}
   m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_Children: []
   m_Father: {fileID: 1120231270}
@@ -11352,6 +11432,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4b65168eacf4be4184a50f1b31acaef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!58 &1714726611
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714726607}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.74
 --- !u!1001 &1738954732
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11440,9 +11536,10 @@ GameObject:
   - component: {fileID: 1757985062}
   - component: {fileID: 1757985061}
   - component: {fileID: 1757985063}
+  - component: {fileID: 1757985064}
   m_Layer: 0
   m_Name: barrel (4)
-  m_TagString: Untagged
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11486,7 +11583,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d45c2d120dce16146a435b535e038efd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -11524,6 +11621,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4b65168eacf4be4184a50f1b31acaef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!58 &1757985064
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1757985060}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0000009536743, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.74
 --- !u!1 &1763300900
 GameObject:
   m_ObjectHideFlags: 0
@@ -11632,6 +11745,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3332493862668948377, guid: ec0fa675432eb1e49a28f99cafcbc67a, type: 3}
   m_PrefabInstance: {fileID: 1477258202}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1802862917
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1802862919}
+  - component: {fileID: 1802862918}
+  m_Layer: 0
+  m_Name: ExitHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!61 &1802862918
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1802862917}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!4 &1802862919
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1802862917}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 23.24, y: 5.9, z: 0}
+  m_LocalScale: {x: 2, y: 2.51, z: 2}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1831360278
 GameObject:
   m_ObjectHideFlags: 0
@@ -11643,9 +11813,10 @@ GameObject:
   - component: {fileID: 1831360280}
   - component: {fileID: 1831360279}
   - component: {fileID: 1831360281}
+  - component: {fileID: 1831360282}
   m_Layer: 0
   m_Name: barrel (2)
-  m_TagString: Untagged
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11689,7 +11860,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d45c2d120dce16146a435b535e038efd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -11709,7 +11880,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1831360278}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.729998, y: 2.050001, z: 0}
+  m_LocalPosition: {x: 10.68, y: 1.93, z: 0}
   m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_Children: []
   m_Father: {fileID: 1120231270}
@@ -11727,6 +11898,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4b65168eacf4be4184a50f1b31acaef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!58 &1831360282
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831360278}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0000011920929, y: 0.00000023841858}
+  serializedVersion: 2
+  m_Radius: 0.74
 --- !u!4 &1844881541 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3332493862668948377, guid: ec0fa675432eb1e49a28f99cafcbc67a, type: 3}
